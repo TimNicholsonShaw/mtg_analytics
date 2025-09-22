@@ -5,10 +5,16 @@ from mtgtools.PCardList import PCardList
 import subprocess
 
 
-def test_me():
-    print("test worked")
+class Deck():
+
+    def __init__(self, card_db):
+        #load card db if it
+        pass
+
+    def __len__(self):
+        pass
 
 
 
 if __name__=="__main__":
-    print("blurb")
+    pass

@@ -6,11 +6,12 @@ authors = [
     {name = "Tim Nicholson-Shaw",email = "timnicholsonshaw@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.9,<4.0"
 dependencies = [
     "mtg-parser (>=0.0.1a48,<0.0.2)",
     "mtgtools (>=0.9.71,<0.10.0)",
     "pytest (>=8.4.2,<9.0.0)",
+    "loguru (>=0.7.3,<0.8.0)",
 ]
 
 [tool.poetry]
