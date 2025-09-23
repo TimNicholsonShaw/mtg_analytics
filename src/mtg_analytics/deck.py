@@ -4,6 +4,8 @@ from mtgtools.MtgDB import MtgDB
 from mtgtools.PCardList import PCardList
 import subprocess
 from pathlib import Path
+from tqdm import tqdm
+from random import shuffle
 
 
 
@@ -16,12 +18,29 @@ def create_db(db_name="card_db.fs", update=False):
 
 class Deck():
 
-    def __init__(self, card_db):
-        #load card db if it
-        pass
+    def __init__(self, card_db, deck_string=""):
+        if deck_string:
+            self.cards = card_db.from_str(deck_string)
+        else:
+            self.cards=PCardList()
+
 
     def __len__(self):
-        pass
+        return len(self.cards)
+
+    def __repr__(self):
+        if len(self.cards) == 0:
+            return "No deck parsed"
+        return self.cards.deck_str(add_set_codes=False)
+
+    def model_land_openings(self, num_draws):
+        out = []
+
+        for _ in tqdm(range(num_draws)):
+            shuffle(self.cards)
+            out.append(len(self.cards[:6].lands()))
+
+        return out
 
 
 

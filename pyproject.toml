@@ -12,6 +12,7 @@ dependencies = [
     "mtgtools (>=0.9.71,<0.10.0)",
     "pytest (>=8.4.2,<9.0.0)",
     "loguru (>=0.7.3,<0.8.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
 ]
 
 [tool.poetry]

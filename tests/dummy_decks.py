@@ -1,7 +1,4 @@
-w_life_gain = """About
-Name Mono-White Lifegain
-
-Deck
+w_life_gain = """
 20 Plains
 2 Banishing Light
 4 Ajani's Pridemate
@@ -15,10 +12,7 @@ Deck
 4 Hinterland Sanctifier
 2 Exemplar of Light"""
 
-rdw = """About
-Name Mono-Red Aggro
-
-Deck
+rdw = """
 17 Mountain
 4 Shock
 4 Burst Lightning
@@ -32,10 +26,7 @@ Deck
 4 Screaming Nemesis
 4 Boltwave"""
 
-gruul_landfall = """About
-Name Gruul Landfall
-
-Deck
+gruul_landfall = """
 14 Forest
 1 Mountain
 4 Llanowar Elves
