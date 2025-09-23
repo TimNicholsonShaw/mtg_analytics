@@ -65,7 +65,5 @@ def test_model_mana_curve_openings_summary(test_deck:Deck=test_deck, num_draws:i
     for item in out:
         assert item < 1
 
-
-
 if __name__=="__main__":
     pass
