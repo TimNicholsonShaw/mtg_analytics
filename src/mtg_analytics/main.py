@@ -11,3 +11,6 @@ import mtg_analytics.tools as tools
 
 if __name__=="__main__":
     tools.begin_logging("test")
+    cards_db = deck.create_db()
+
+    print(len(cards_db))

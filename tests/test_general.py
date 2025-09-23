@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-
-import mtg_analytics.deck as deck
-import mtg_analytics.main as main
 import mtg_analytics.tools as tools
 from loguru import logger
 import os

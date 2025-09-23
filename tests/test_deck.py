@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 
-from mtg_analytics.deck import Deck
-
+from mtg_analytics.deck import Deck, create_db
 
 
 
 def test_read_from_str():
-    #deck = Deck(dummy_decks.w_life_gain)
-    #assert len(deck) == 60
     pass
+
+def test_card_db():
+    cards_db = create_db()
+    spaghetti_monster = cards_db.where_exactly(multiverse_ids=[456600])[0]
+    assert spaghetti_monster.name.startswith("Emrakul, the Aeons Torn")
+
