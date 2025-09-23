@@ -7,15 +7,6 @@ from pathlib import Path
 from tqdm import tqdm
 from random import shuffle
 
-
-
-def create_db(db_name="card_db.fs", update=False):
-    mtg_db = MtgDB(f'{Path(__file__).parent.parent.parent}/database/{db_name}')
-    if len(mtg_db.root.scryfall_cards) == 0 or update==True:
-        mtg_db.scryfall_bulk_update()
-    return mtg_db.root.scryfall_cards
-
-
 class Deck():
 
     def __init__(self, card_db, deck_string=""):
@@ -41,6 +32,55 @@ class Deck():
             out.append(len(self.cards[:6].lands()))
 
         return out
+    
+    def model_opening_mana_curve(self, num_draws:int)-> list:
+        out = []
+
+        for _ in tqdm(range(num_draws)):
+            temp = [0,0,0,0,0,0]
+            shuffle(self.cards)
+
+            for card in filter_lands(self.cards[:6]):
+                cmc = int(card.cmc)
+                if cmc >= 5:
+                    temp[5] +=1
+                else:
+                    temp[cmc] +=1
+
+            out.append(temp)
+
+        return out
+    
+    def model_mana_curve_openings_summary(self, num_draws:int) -> list[float]:
+        temp = [0,0,0,0,0,0]
+
+        for draw in self.model_opening_mana_curve(num_draws):
+            for i in range(len(draw)):
+                if draw[i]>0:
+                    temp[i]+=1
+        return [x/sum(temp) for x in temp]
+
+
+
+def create_db(db_name="card_db.fs", update=False):
+    mtg_db = MtgDB(f'{Path(__file__).parent.parent.parent}/database/{db_name}')
+    if len(mtg_db.root.scryfall_cards) == 0 or update==True:
+        mtg_db.scryfall_bulk_update()
+    return mtg_db.root.scryfall_cards
+
+def filter_lands(cards:Deck|PCardList) -> PCardList:
+    if type(cards) == Deck:
+        cards=cards.cards
+    lands = cards.lands()
+    out = PCardList()
+    for card in cards:
+        if card in lands:
+            continue
+        else:
+            out+=card
+    return out
+
+
 
 
 
